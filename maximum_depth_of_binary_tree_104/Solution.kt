@@ -7,18 +7,12 @@ class TreeNode(var `val`: Int) {
 }
 
 class Solution {
-    fun maxDepth(root: TreeNode?): Int {
+    fun maxDepth(root: tree.TreeNode?): Int {
+        if (root == null) return 0
 
-        fun dfs(node: TreeNode?): Int {
-            if(node == null) return 0
+        val leftDepth = maxDepth(root.left)
+        val rightDepth = maxDepth(root.right)
 
-            val l = dfs(node.left)
-            val r = dfs(node.right)
-
-            return maxOf(l, r) + 1
-        }
-
-        return dfs(root)
-
+        return 1 + maxOf(leftDepth, rightDepth)
     }
 }
